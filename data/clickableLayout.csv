@@ -1,2 +1,6 @@
 ID,Name,State,PNGFilename,Text,x,y,visible
 0,StartGame,Instructions,,Start Game,100,650,yes
+1,Bantu,Start,assets/bantu.png,,300,450,yes
+2,Buns,Start,assets/buns.png,,80,450,yes
+3,Braids,Start,assets/braids.png,,80,200,yes
+4,Flow,Start,assets/flowhair.png,,300,200,yes

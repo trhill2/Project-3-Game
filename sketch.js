@@ -147,10 +147,20 @@ function mouseReleased() {
 function setupClickables() {
   // All clickables to have same effects
   for( let i = 0; i < clickables.length; i++ ) {
-    clickables[i].onHover = clickableButtonHover;
-    clickables[i].onOutside = clickableButtonOnOutside;
+    // clickables[i].onHover = clickableButtonHover;
+    // clickables[i].onOutside = clickableButtonOnOutside;
     clickables[i].onPress = clickableButtonPressed;
   }
+//bantu 
+  clickables[0].onHover = clickableButtonHover;
+  clickables[0].onOutside = clickableButtonOnOutside;
+  clickables[0].onPress = clickableButtonPressed;
+  clickables[0].transparent = false;
+  clickables[1].strokeWeight = 0;
+  clickables[2].strokeWeight = 0;
+  clickables[3].strokeWeight = 0;
+  clickables[4].strokeWeight = 0;
+
 }
 //--
 
@@ -174,6 +184,28 @@ clickableButtonPressed = function() {
   // these clickables are ones that change your state
   // so they route to the adventure manager to do this
   adventureManager.clickablePressed(this.name); 
+  if (this.name === "Bantu"){
+    console.log("Bantu Pressed");
+    playerAvatar.addMovingAnimation( 'assets/avatarbanturun1.png', 'assets/avatarbanturun2.png');
+  playerAvatar.addStandingAnimation('assets/avatarbantustand1.png', 'assets/avatarbantustand2.png');
+  }
+  if (this.name === "Flow"){
+    console.log("Flow Pressed");
+    playerAvatar.addMovingAnimation( 'assets/avatarflowrun1.png', 'assets/avatarflowrun2.png');
+  playerAvatar.addStandingAnimation('assets/avatarflowstand1.png', 'assets/avatarflowstand2.png');
+  }
+  if (this.name === "Braids"){
+    console.log("Braids Pressed");
+    playerAvatar.addMovingAnimation( 'assets/avatarbraidsrun1.png', 'assets/avatarbraidsrun2.png');
+  playerAvatar.addStandingAnimation('assets/avatarbraidsstand1.png', 'assets/avatarbraidsstand2.png');
+  }
+
+  if (this.name === "Buns"){
+    console.log("Buns Pressed");
+    playerAvatar.addMovingAnimation( 'assets/avatarrun1.png', 'assets/avatarrun2.png');
+    playerAvatar.addStandingAnimation('assets/avatarstand1.png', 'assets/avatarstand2.png');}
+
+
 }
 //
 
@@ -238,10 +270,39 @@ class TemplateScreen extends PNGRoom {
     // Add your code here
   }
 }
+class HairRoom extends PNGRoom {
+  preload() {
+    // define class varibles here, load images or anything else
+  }
+
+  // call the PNGRoom superclass's draw function to draw the background image
+  // and draw our code adter this
+  draw() {
+    // this calls PNGRoom.draw()
+    super.draw();
+
+    // Add your code here
+  }
+}
+class DocRoom extends PNGRoom {
+  preload() {
+    // define class varibles here, load images or anything else
+    
+  }
+
+  // call the PNGRoom superclass's draw function to draw the background image
+  // and draw our code adter this
+  draw() {
+    // this calls PNGRoom.draw()
+    super.draw();
+
+    // Add your code here
+  }
+}
 class NPCRoom extends PNGRoom {
   preload() {
     // define class varibles here, load images or anything else
-    this.npc1 = new NPC("Security", 400, 160, 'assets/npcavatarwalk1.png');
+    this.npc1 = new NPC("Security", 900, 260, 'assets/npcavatarwalk1.png');
     this.npc1.addSingleInteraction("HEY! PUT THAT BACK! NO STEALING!");
 
     
