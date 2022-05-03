@@ -79,6 +79,12 @@ function setup() {
   // that are not in the array 
   setupClickables(); 
   //--
+
+  // for testing
+  // if( overlap && all items are true ) {
+  //  adventureManager.changeState("NextRoom");
+  //}
+  adventureManager.changeState("Determined");
 }
 
 // Adventure manager handles it all!
@@ -288,17 +294,57 @@ class DocRoom extends PNGRoom {
   preload() {
     // define class varibles here, load images or anything else
     
+    // an array of static sprites
+    this.painLevels = [];
+    
+    // make an array of randomly-positioned static sprite
+    this.painLevels.push(new StaticSprite("painlevel", random(0,width),random(0,height), 'assets/painlevel.png'));
+    this.painLevels.push(new StaticSprite("painlevel", random(0,width),random(0,height), 'assets/painlevel.png'));
+    this.painLevels.push(new StaticSprite("painlevel", random(0,width),random(0,height), 'assets/painlevel.png'));
+    this.painLevels.push(new StaticSprite("painlevel", random(0,width),random(0,height), 'assets/painlevel.png'));
+
+    // set intersect array elements to be false
+    this.painLevelsCollected = [];
+    for( let i = 0; i < this.painLevels.length; i++ ) {
+      this.painLevelsCollected[i] = false;
+    }
+
+    this.hasSetup = false;
   }
 
   // call the PNGRoom superclass's draw function to draw the background image
   // and draw our code adter this
   draw() {
+    if( this.hasSetup === false ) {
+      for( let i = 0; i < this.painLevels.length; i++ ) {
+        this.painLevels[i].setup();
+      }
+
+      this.hasSetup = true;
+    }
     // this calls PNGRoom.draw()
     super.draw();
 
+    for( let i = 0; i < this.painLevels.length; i++ ) {
+      // only draw the ones that weren't collected
+      if( this.painLevelsCollected[i] === false ) {
+        drawSprite(this.painLevels[i].sprite);
+      }
+    }
+
+    // go through the pain levels and search for overlaps
+    for( let i = 0; i < this.painLevels.length; i++ ) {
+      if( playerAvatar.sprite.overlap(this.painLevels[i].sprite) ) {
+        this.painLevelsCollected[i] = true;
+      }
+    }
+
     // Add your code here
   }
+
+  // to add: get a count of how many were collected!
 }
+
 class NPCRoom extends PNGRoom {
   preload() {
     // define class varibles here, load images or anything else
