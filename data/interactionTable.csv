@@ -9,11 +9,12 @@ Calm,,S,Start
 Calm,,E,Sleepy
 
 Determined,,S,Mad
+Determined,,N,Doc
 Sleepy,,W,Calm
 Sleepy,,S,Unlucky
 Mad,,E,Start
-
 Mad,,N,Determined
+Doc,,S,Determined
 
 Unlucky,,N,Sleepy
 Unlucky,,S,Sad
@@ -23,6 +24,6 @@ Happy,,W,Anxious
 Happy,,E,Surprised
 Surprised,,N,Start
 Surprised,,W,Happy
-Surprised,,E,Sad
+
 Sad,,N,Unlucky
 Sad,,W,Surprised

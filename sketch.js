@@ -84,7 +84,7 @@ function setup() {
   // if( overlap && all items are true ) {
   //  adventureManager.changeState("NextRoom");
   //}
-  adventureManager.changeState("Determined");
+  adventureManager.changeState("Splash");
 }
 
 // Adventure manager handles it all!
@@ -248,7 +248,7 @@ class InstructionsScreen extends PNGRoom {
     super.draw();
       
     // text draw settings
-    fill(255);
+    fill(0,0,0);
     textAlign(CENTER);
     textSize(30);
 
@@ -341,15 +341,227 @@ class DocRoom extends PNGRoom {
 
     // Add your code here
   }
+}// to add: get a count of how many were collected!
 
-  // to add: get a count of how many were collected!
+class DocRoomtwo extends PNGRoom{
+  preload() {
+    // define class varibles here, load images or anything else
+    // this.npc1 = new NPC("Security", 900, 260, 'assets/npcavatarwalk1.png');
+    // this.npc1.addSingleInteraction("HEY! PUT THAT BACK! NO STEALING!");
+    this.npc2 = new NPC("Doctor", 940, 190, 'assets/Doctornpc.png');
+    this.npc2.addSingleInteraction("I don't think you are in as much pain as I think you are.");
+    this.npc2.addSingleInteraction("I am going to send you home.");
+
+    
+    //this.npc2.addSingleInteraction("If you wouldn\'t mind...I could really use a star right now!");
+    //this.npc2.setupQuest("Star", "Thanks! This is just what I needed", "I didn't ask for that!");
+
+    
+    // setup flag, seto false
+    this.hasSetup = false;
+  }
+
+  // call the PNGRoom superclass's draw function to draw the background image
+  // and draw our code adter this
+  draw() {
+    // Idea is to call the npc1.setup() function ONE time, so we use this kind of flag
+    if( this.hasSetup === false ) {
+      // setup NPC 1
+      this.npc2.setup();
+      this.npc2.setPromptLocation(0,-30);
+      
+      // setup NPC 2
+      //this.npc2.setup();
+      // this.npc2.setPromptLocation(0,-100);
+
+      this.hasSetup = true; 
+    }
+
+    // this calls PNGRoom.draw()
+    super.draw();
+
+    // draw our NPCs
+    drawSprite(this.npc2.sprite);
+    // drawSprite(this.npc2.sprite);
+
+    // When you have multiple NPCs, you can add them to an array and have a function 
+    // iterate through it to call this function for each more concisely.
+    this.npc2.displayInteractPrompt(playerAvatar);
+    // this.npc2.displayInteractPrompt(playerAvatar);
+  }
+
+  // custom code here to do stuff upon exiting room
+  // unload() {
+  //   // reset NPC interaction to beginning when entering room
+  //   this.npc2.resetInteraction();
+  // }
+
+  // custom code here to do stuff upon entering room
+  load() {
+    // pass to PNGRoom to load image
+    super.load();
+    
+    // Add custom code here for unloading
+  }
+
+  // keyPressed() {
+  //   if(key === ' ') {
+  //     if(this.npc2.isInteracting(playerAvatar)) {
+  //       this.npc2.continueInteraction();
+  //     }
+  //   }
+  // }
+
 }
 
+class AwkwardRoom1 extends PNGRoom{
+  preload() {
+    // define class varibles here, load images or anything else
+    // this.npc1 = new NPC("Security", 900, 260, 'assets/npcavatarwalk1.png');
+    // this.npc1.addSingleInteraction("HEY! PUT THAT BACK! NO STEALING!");
+    this.npc4 = new NPC("Store owner", random(0,width),random(0,height), 'assets/whiteladynpc.png');
+    this.npc4.addSingleInteraction("Wow your hair is so interesting");
+    
+
+    
+    //this.npc2.addSingleInteraction("If you wouldn\'t mind...I could really use a star right now!");
+    //this.npc2.setupQuest("Star", "Thanks! This is just what I needed", "I didn't ask for that!");
+
+    
+    // setup flag, seto false
+    this.hasSetup = false;
+  }
+
+  // call the PNGRoom superclass's draw function to draw the background image
+  // and draw our code adter this
+  draw() {
+    // Idea is to call the npc1.setup() function ONE time, so we use this kind of flag
+    if( this.hasSetup === false ) {
+      // setup NPC 1
+      this.npc4.setup();
+      this.npc4.setPromptLocation(0,-30);
+      
+      // setup NPC 2
+      //this.npc2.setup();
+      // this.npc2.setPromptLocation(0,-100);
+
+      this.hasSetup = true; 
+    }
+
+    // this calls PNGRoom.draw()
+    super.draw();
+
+    // draw our NPCs
+    drawSprite(this.npc4.sprite);
+    // drawSprite(this.npc2.sprite);
+
+    // When you have multiple NPCs, you can add them to an array and have a function 
+    // iterate through it to call this function for each more concisely.
+    this.npc4.displayInteractPrompt(playerAvatar);
+    // this.npc2.displayInteractPrompt(playerAvatar);
+  }
+
+  // custom code here to do stuff upon exiting room
+  // unload() {
+  //   // reset NPC interaction to beginning when entering room
+  //   this.npc2.resetInteraction();
+  // }
+
+  // custom code here to do stuff upon entering room
+  load() {
+    // pass to PNGRoom to load image
+    super.load();
+    
+    // Add custom code here for unloading
+  }
+
+  // keyPressed() {
+  //   if(key === ' ') {
+  //     if(this.npc2.isInteracting(playerAvatar)) {
+  //       this.npc2.continueInteraction();
+  //     }
+  //   }
+  // }
+
+}
+class AwkwardRoom extends PNGRoom{
+  preload() {
+    // define class varibles here, load images or anything else
+    // this.npc1 = new NPC("Security", 900, 260, 'assets/npcavatarwalk1.png');
+    // this.npc1.addSingleInteraction("HEY! PUT THAT BACK! NO STEALING!");
+    this.npc4 = new NPC("Store owner", random(0,width),random(0,height), 'assets/whiteladynpc.png');
+    this.npc4.addSingleInteraction("So is this your natural hair?");
+    
+
+    
+    //this.npc2.addSingleInteraction("If you wouldn\'t mind...I could really use a star right now!");
+    //this.npc2.setupQuest("Star", "Thanks! This is just what I needed", "I didn't ask for that!");
+
+    
+    // setup flag, seto false
+    this.hasSetup = false;
+  }
+
+  // call the PNGRoom superclass's draw function to draw the background image
+  // and draw our code adter this
+  draw() {
+    // Idea is to call the npc1.setup() function ONE time, so we use this kind of flag
+    if( this.hasSetup === false ) {
+      // setup NPC 1
+      this.npc4.setup();
+      this.npc4.setPromptLocation(0,-30);
+      
+      // setup NPC 2
+      //this.npc2.setup();
+      // this.npc2.setPromptLocation(0,-100);
+
+      this.hasSetup = true; 
+    }
+
+    // this calls PNGRoom.draw()
+    super.draw();
+
+    // draw our NPCs
+    drawSprite(this.npc4.sprite);
+    // drawSprite(this.npc2.sprite);
+
+    // When you have multiple NPCs, you can add them to an array and have a function 
+    // iterate through it to call this function for each more concisely.
+    this.npc4.displayInteractPrompt(playerAvatar);
+    // this.npc2.displayInteractPrompt(playerAvatar);
+  }
+
+  // custom code here to do stuff upon exiting room
+  // unload() {
+  //   // reset NPC interaction to beginning when entering room
+  //   this.npc2.resetInteraction();
+  // }
+
+  // custom code here to do stuff upon entering room
+  load() {
+    // pass to PNGRoom to load image
+    super.load();
+    
+    // Add custom code here for unloading
+  }
+
+  // keyPressed() {
+  //   if(key === ' ') {
+  //     if(this.npc2.isInteracting(playerAvatar)) {
+  //       this.npc2.continueInteraction();
+  //     }
+  //   }
+  // }
+
+}
 class NPCRoom extends PNGRoom {
   preload() {
     // define class varibles here, load images or anything else
     this.npc1 = new NPC("Security", 900, 260, 'assets/npcavatarwalk1.png');
     this.npc1.addSingleInteraction("HEY! PUT THAT BACK! NO STEALING!");
+    // this.npc2 = new NPC("Doctor", 900, 260, 'assets/Doctornpc.png');
+    // this.npc2.addSingleInteraction("I don't think you are in as much pain as I think you are.");
+    // this.npc2.addSingleInteraction("I am going to send you home.");
 
     
     //this.npc2.addSingleInteraction("If you wouldn\'t mind...I could really use a star right now!");
@@ -412,5 +624,76 @@ class NPCRoom extends PNGRoom {
   // }
 
 }
+class NagRoom extends PNGRoom {
+  preload() {
+    // define class varibles here, load images or anything else
+    this.npc3 = new NPC("Employee", 900, 260, 'assets/naggnpc.png');
+    this.npc3.addSingleInteraction("Hi Do you need any help?");
+    // this.npc2 = new NPC("Doctor", 900, 260, 'assets/Doctornpc.png');
+    // this.npc2.addSingleInteraction("I don't think you are in as much pain as I think you are.");
+    // this.npc2.addSingleInteraction("I am going to send you home.");
+
+    
+    //this.npc2.addSingleInteraction("If you wouldn\'t mind...I could really use a star right now!");
+    //this.npc2.setupQuest("Star", "Thanks! This is just what I needed", "I didn't ask for that!");
+
+    
+    // setup flag, seto false
+    this.hasSetup = false;
+  }
+
+  // call the PNGRoom superclass's draw function to draw the background image
+  // and draw our code adter this
+  draw() {
+    // Idea is to call the npc1.setup() function ONE time, so we use this kind of flag
+    if( this.hasSetup === false ) {
+      // setup NPC 1
+      this.npc3.setup();
+      this.npc3.setPromptLocation(0,-30);
+      
+      // setup NPC 2
+      //this.npc2.setup();
+      // this.npc2.setPromptLocation(0,-100);
+
+      this.hasSetup = true; 
+    }
+
+    // this calls PNGRoom.draw()
+    super.draw();
+
+    // draw our NPCs
+    drawSprite(this.npc3.sprite);
+    // drawSprite(this.npc2.sprite);
+
+    // When you have multiple NPCs, you can add them to an array and have a function 
+    // iterate through it to call this function for each more concisely.
+    this.npc3.displayInteractPrompt(playerAvatar);
+    // this.npc2.displayInteractPrompt(playerAvatar);
+  }
+
+  // custom code here to do stuff upon exiting room
+  // unload() {
+  //   // reset NPC interaction to beginning when entering room
+  //   this.npc2.resetInteraction();
+  // }
+
+  // custom code here to do stuff upon entering room
+  load() {
+    // pass to PNGRoom to load image
+    super.load();
+    
+    // Add custom code here for unloading
+  }
+
+  // keyPressed() {
+  //   if(key === ' ') {
+  //     if(this.npc2.isInteracting(playerAvatar)) {
+  //       this.npc2.continueInteraction();
+  //     }
+  //   }
+  // }
+
+}
+
 //-- done copy
 
