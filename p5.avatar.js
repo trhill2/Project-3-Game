@@ -170,7 +170,7 @@ class NPC extends Avatar {
     this.img = loadImage(pngPath);
 
     this.promptX = 0;
-    this.promptY = -50; 
+    this.promptY = -130; 
     this.keyCodeNum = 32;   // default to SPACE Bar
     this.state = "default";
   }
@@ -235,7 +235,13 @@ class NPC extends Avatar {
 
   // MODIFY THIS - drawing of the prompt
   drawPrompt() {
-      fill('white');
+    
+    let rectX = this.sprite.position.x + this.promptX-0;
+    let rectY = this.sprite.position.y + this.promptY-5;
+    fill(255);
+    rectMode(CENTER);
+    rect(rectX,rectY,textWidth(this.displayMessage)+60,40)
+      fill('black');
       textSize(14);
       
       textAlign(CENTER);

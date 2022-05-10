@@ -15,10 +15,11 @@ Sleepy,,S,Unlucky
 Mad,,E,Start
 Mad,,N,Determined
 Doc,,S,Determined
-
+Doc,StartGame,,Start
 Unlucky,,N,Sleepy
 Unlucky,,S,Sad
 Anxious,,E,Happy
+Anxious,StartGame,,Start
 Happy,,W,Anxious
 
 Happy,,E,Surprised

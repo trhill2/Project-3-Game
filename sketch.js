@@ -48,6 +48,7 @@ function preload() {
 // Setup the adventure manager
 function setup() {
   createCanvas(1280, 720);
+  
 
   //--- TEMPLATE STUFF: Don't change
   // setup the clickables = this will allocate the array
@@ -368,7 +369,7 @@ class DocRoomtwo extends PNGRoom{
     if( this.hasSetup === false ) {
       // setup NPC 1
       this.npc2.setup();
-      this.npc2.setPromptLocation(0,-30);
+      //this.npc2.setPromptLocation(0,-30);
       
       // setup NPC 2
       //this.npc2.setup();
@@ -404,13 +405,13 @@ class DocRoomtwo extends PNGRoom{
     // Add custom code here for unloading
   }
 
-  // keyPressed() {
-  //   if(key === ' ') {
-  //     if(this.npc2.isInteracting(playerAvatar)) {
-  //       this.npc2.continueInteraction();
-  //     }
-  //   }
-  // }
+  keyPressed() {
+    if(key === ' ') {
+      if(this.npc2.isInteracting(playerAvatar)) {
+        this.npc2.continueInteraction();
+      }
+    }
+  }
 
 }
 
@@ -419,7 +420,9 @@ class AwkwardRoom1 extends PNGRoom{
     // define class varibles here, load images or anything else
     // this.npc1 = new NPC("Security", 900, 260, 'assets/npcavatarwalk1.png');
     // this.npc1.addSingleInteraction("HEY! PUT THAT BACK! NO STEALING!");
-    this.npc4 = new NPC("Store owner", random(0,width),random(0,height), 'assets/whiteladynpc.png');
+    let hMargin = 100;
+    let vMargin = 250;
+    this.npc4 = new NPC("Store owner", random(hMargin,width-hMargin),random(vMargin,height-vMargin), 'assets/whiteladynpc.png');
     this.npc4.addSingleInteraction("Wow your hair is so interesting");
     
 
@@ -439,7 +442,7 @@ class AwkwardRoom1 extends PNGRoom{
     if( this.hasSetup === false ) {
       // setup NPC 1
       this.npc4.setup();
-      this.npc4.setPromptLocation(0,-30);
+     // this.npc4.setPromptLocation(0,-30);
       
       // setup NPC 2
       //this.npc2.setup();
@@ -449,7 +452,9 @@ class AwkwardRoom1 extends PNGRoom{
     }
 
     // this calls PNGRoom.draw()
+    background(255);
     super.draw();
+    
 
     // draw our NPCs
     drawSprite(this.npc4.sprite);
@@ -489,8 +494,13 @@ class AwkwardRoom extends PNGRoom{
     // define class varibles here, load images or anything else
     // this.npc1 = new NPC("Security", 900, 260, 'assets/npcavatarwalk1.png');
     // this.npc1.addSingleInteraction("HEY! PUT THAT BACK! NO STEALING!");
-    this.npc4 = new NPC("Store owner", random(0,width),random(0,height), 'assets/whiteladynpc.png');
+    let hMargin = 100;
+    let vMargin = 230;
+    this.npc4 = new NPC("Store owner", random(hMargin,width-hMargin),random(vMargin,height-vMargin), 'assets/whiteladynpc.png');
     this.npc4.addSingleInteraction("So is this your natural hair?");
+
+    this.npc5 = new NPC("Store owner", random(hMargin,width-hMargin),random(vMargin,height-vMargin), 'assets/whiteladynpc.png');
+    this.npc5.addSingleInteraction("How do you get it like that?");
     
 
     
@@ -509,7 +519,8 @@ class AwkwardRoom extends PNGRoom{
     if( this.hasSetup === false ) {
       // setup NPC 1
       this.npc4.setup();
-      this.npc4.setPromptLocation(0,-30);
+      this.npc5.setup();
+      //this.npc4.setPromptLocation(0,-30);
       
       // setup NPC 2
       //this.npc2.setup();
@@ -519,15 +530,18 @@ class AwkwardRoom extends PNGRoom{
     }
 
     // this calls PNGRoom.draw()
+    background(255);
     super.draw();
 
     // draw our NPCs
     drawSprite(this.npc4.sprite);
+    drawSprite(this.npc5.sprite);
     // drawSprite(this.npc2.sprite);
 
     // When you have multiple NPCs, you can add them to an array and have a function 
     // iterate through it to call this function for each more concisely.
     this.npc4.displayInteractPrompt(playerAvatar);
+    this.npc5.displayInteractPrompt(playerAvatar);
     // this.npc2.displayInteractPrompt(playerAvatar);
   }
 
@@ -579,7 +593,7 @@ class NPCRoom extends PNGRoom {
     if( this.hasSetup === false ) {
       // setup NPC 1
       this.npc1.setup();
-      this.npc1.setPromptLocation(0,-30);
+      //this.npc1.setPromptLocation(0,-30);
       
       // setup NPC 2
       //this.npc2.setup();
@@ -627,8 +641,19 @@ class NPCRoom extends PNGRoom {
 class NagRoom extends PNGRoom {
   preload() {
     // define class varibles here, load images or anything else
-    this.npc3 = new NPC("Employee", 900, 260, 'assets/naggnpc.png');
-    this.npc3.addSingleInteraction("Hi Do you need any help?");
+    //this.npc3 = new NPC("Employee", 900, 260, 'assets/naggnpc.png');
+    //this.npc3.addSingleInteraction("Hi Do you need any help?");
+    
+    this.npcs = [];
+    for( let i = 0; i < 4; i++ ) {
+      let hMargin = 100;
+      let vMargin = 200;
+      this.npcs.push(new NPC("Employee", random(hMargin, width-hMargin), random(vMargin, height-vMargin), 'assets/naggnpc.png'));
+    }
+
+    for( let i = 0; i < this.npcs.length; i++ ) {
+      this.npcs[i].addSingleInteraction("Hi Do you need any help?");
+    }
     // this.npc2 = new NPC("Doctor", 900, 260, 'assets/Doctornpc.png');
     // this.npc2.addSingleInteraction("I don't think you are in as much pain as I think you are.");
     // this.npc2.addSingleInteraction("I am going to send you home.");
@@ -648,8 +673,11 @@ class NagRoom extends PNGRoom {
     // Idea is to call the npc1.setup() function ONE time, so we use this kind of flag
     if( this.hasSetup === false ) {
       // setup NPC 1
-      this.npc3.setup();
-      this.npc3.setPromptLocation(0,-30);
+      for( let i = 0; i < this.npcs.length; i++ ) {
+        this.npcs[i].setup();
+      }
+      //this.npc3.setup();
+     // this.npc3.setPromptLocation(0,-30);
       
       // setup NPC 2
       //this.npc2.setup();
@@ -662,13 +690,20 @@ class NagRoom extends PNGRoom {
     super.draw();
 
     // draw our NPCs
-    drawSprite(this.npc3.sprite);
+    for( let i = 0; i < this.npcs.length; i++ ) {
+      drawSprite(this.npcs[i].sprite);
+    }
+   // drawSprite(this.npc3.sprite);
     // drawSprite(this.npc2.sprite);
 
     // When you have multiple NPCs, you can add them to an array and have a function 
     // iterate through it to call this function for each more concisely.
-    this.npc3.displayInteractPrompt(playerAvatar);
+    //this.npc3.displayInteractPrompt(playerAvatar);
     // this.npc2.displayInteractPrompt(playerAvatar);
+    for( let i = 0; i < this.npcs.length; i++ ) {
+      this.npcs[i].displayInteractPrompt(playerAvatar);
+    }
+
   }
 
   // custom code here to do stuff upon exiting room
