@@ -5,4 +5,5 @@ ID,Name,State,PNGFilename,Text,x,y,visible
 3,Braids,Start,assets/braids.png,,80,200,yes
 4,Flow,Start,assets/flowhair.png,,300,200,yes
 5,StartGame,Doc,,Exit,100,650,yes
-6,StartGame,Anxious,,Exit,100,650,yes
+6,StartGame,Exoticend,,Exit,100,650,yes
+6,StartGame,Security,,Exit,1100,60,yes

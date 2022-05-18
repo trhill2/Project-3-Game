@@ -1,6 +1,7 @@
 /***********************************************************************************
-  MoodyMaze
-  by Scott Kildall
+ All My Life 
+ By Tyisha Hill 
+  Uses source code from Scott Kildall
 
   Uses the p5.2DAdventure.js class 
   
@@ -154,8 +155,6 @@ function mouseReleased() {
 function setupClickables() {
   // All clickables to have same effects
   for( let i = 0; i < clickables.length; i++ ) {
-    // clickables[i].onHover = clickableButtonHover;
-    // clickables[i].onOutside = clickableButtonOnOutside;
     clickables[i].onPress = clickableButtonPressed;
   }
 //bantu 
@@ -299,6 +298,7 @@ class DocRoom extends PNGRoom {
     this.painLevels = [];
     
     // make an array of randomly-positioned static sprite
+    this.painLevels.push(new StaticSprite("painlevel", random(0,width),random(0,height), 'assets/painlevel.png'));
     this.painLevels.push(new StaticSprite("painlevel", random(0,width),random(0,height), 'assets/painlevel.png'));
     this.painLevels.push(new StaticSprite("painlevel", random(0,width),random(0,height), 'assets/painlevel.png'));
     this.painLevels.push(new StaticSprite("painlevel", random(0,width),random(0,height), 'assets/painlevel.png'));
